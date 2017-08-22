@@ -19,7 +19,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
  * @author m80027
  */
 public class PainelGrafico extends javax.swing.JPanel {
-
+        ExibeGrafico eg;
     /**
      * Creates new form PainelGrafico
      */
@@ -83,7 +83,7 @@ public class PainelGrafico extends javax.swing.JPanel {
 
     private void gerarGraficoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarGraficoActionPerformed
          
-        this.criaGrafico();
+      
     }//GEN-LAST:event_gerarGraficoActionPerformed
 
 
@@ -91,34 +91,6 @@ public class PainelGrafico extends javax.swing.JPanel {
     public javax.swing.JButton gerarGrafico;
     public javax.swing.JButton voltarPainelGraficoToPrincipal;
     // End of variables declaration//GEN-END:variables
-    public CategoryDataset createDataset() {
-
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.addValue(1000.0,"01/2012","Mês/Ano");
-        dataset.addValue(1750.0,"02/2012","Mês/Ano");
-        dataset.addValue(1500.0,"03/2012","Mês/Ano");
-
-        return dataset;
-
-    }
     
-    
-   public void criaGrafico() {
-        CategoryDataset cds = createDataset();
-        String titulo = "Gráfico de Teste";
-        String eixoy = "Valores";
-        String txt_legenda = "Ledenda:";
-        boolean legenda = true;
-        boolean tooltips = true;
-        boolean urls = true;
-        JFreeChart graf = ChartFactory.createBarChart3D(titulo, txt_legenda, eixoy, cds, PlotOrientation.VERTICAL, legenda, tooltips, urls);
-        ChartPanel myChartPanel = new ChartPanel(graf, true);
-        myChartPanel.setSize(this.getWidth(),this.getHeight());
-        myChartPanel.setVisible(true);
-        this.removeAll();
-        this.add(myChartPanel);
-        this.revalidate();
-        this.repaint();
-    }
 
 }
