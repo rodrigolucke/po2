@@ -5,10 +5,19 @@
  */
 package aula4grafico;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.AxisLocation;
+import org.jfree.chart.axis.NumberAxis3D;
+import org.jfree.chart.axis.ValueAxis;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.DatasetRenderingOrder;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.CategoryItemRenderer;
+import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
@@ -16,14 +25,14 @@ import org.jfree.data.category.DefaultCategoryDataset;
  *
  * @author m80027
  */
-public class ExibeGrafico extends javax.swing.JPanel {
-
+public class ExibeGrafico extends javax.swing.JPanel implements ActionListener{
+    
     /**
      * Creates new form exibeGrafico
      */
     public ExibeGrafico() {
         initComponents();
-        this.setSize(400,300);
+        this.setSize(200,120);
         this.setVisible(false);
         this.setBounds(0, 0, this.getWidth(), this.getHeight());
         
@@ -82,6 +91,11 @@ public CategoryDataset createDataset() {
         this.add(myChartPanel);
         this.revalidate();
         this.repaint();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

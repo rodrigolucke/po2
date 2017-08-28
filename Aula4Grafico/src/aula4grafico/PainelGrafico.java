@@ -5,29 +5,44 @@
  */
 package aula4grafico;
 
- 
-import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.AxisLocation;
+import org.jfree.chart.axis.NumberAxis3D;
+import org.jfree.chart.axis.ValueAxis;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.DatasetRenderingOrder;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.CategoryItemRenderer;
+import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
+ 
 /**
  *
  * @author m80027
  */
-public class PainelGrafico extends javax.swing.JPanel {
-        ExibeGrafico eg;
+public class PainelGrafico extends javax.swing.JPanel implements ActionListener {
+     //EscolhaDeDados ed;
+      //  ExibeGrafico eg;
     /**
      * Creates new form PainelGrafico
      */
     public PainelGrafico() {
         initComponents();
-        this.setSize(400,300);
+        this.setSize(500,300);
         this.setVisible(false);
-        this.setBounds(0, 0, this.getWidth(), this.getHeight());
+        this.gerarGráfico.setVisible(false);
+        this.comandoTexto.setVisible(false);
+        this.jLabel1.setVisible(false);
+        //ed = new EscolhaDeDados();       
+        
+           
+        
     }
 
    
@@ -41,7 +56,10 @@ public class PainelGrafico extends javax.swing.JPanel {
     private void initComponents() {
 
         voltarPainelGraficoToPrincipal = new javax.swing.JButton();
-        gerarGrafico = new javax.swing.JButton();
+        entrarDados = new javax.swing.JButton();
+        gerarGráfico = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        comandoTexto = new javax.swing.JTextField();
 
         voltarPainelGraficoToPrincipal.setText("Voltar");
         voltarPainelGraficoToPrincipal.addActionListener(new java.awt.event.ActionListener() {
@@ -50,10 +68,25 @@ public class PainelGrafico extends javax.swing.JPanel {
             }
         });
 
-        gerarGrafico.setText("Gerar gráfico");
-        gerarGrafico.addActionListener(new java.awt.event.ActionListener() {
+        entrarDados.setText("Entrada de Dados");
+        entrarDados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gerarGraficoActionPerformed(evt);
+                entrarDadosActionPerformed(evt);
+            }
+        });
+
+        gerarGráfico.setText("Gerar Gráfico");
+        gerarGráfico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gerarGráficoActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Texto comando:");
+
+        comandoTexto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comandoTextoActionPerformed(evt);
             }
         });
 
@@ -61,19 +94,37 @@ public class PainelGrafico extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addComponent(gerarGrafico)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
-                .addComponent(voltarPainelGraficoToPrincipal))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(entrarDados)
+                .addGap(6, 6, 6)
+                .addComponent(gerarGráfico)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(voltarPainelGraficoToPrincipal)
+                .addContainerGap(38, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(141, 141, 141)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(comandoTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 277, Short.MAX_VALUE)
+                .addGap(46, 46, 46)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(comandoTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(voltarPainelGraficoToPrincipal)
-                    .addComponent(gerarGrafico)))
+                    .addComponent(entrarDados)
+                    .addComponent(gerarGráfico)
+                    .addComponent(voltarPainelGraficoToPrincipal))
+                .addGap(45, 45, 45))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -81,16 +132,91 @@ public class PainelGrafico extends javax.swing.JPanel {
         this.setVisible(false);
     }//GEN-LAST:event_voltarPainelGraficoToPrincipalActionPerformed
 
-    private void gerarGraficoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarGraficoActionPerformed
-         
-      
-    }//GEN-LAST:event_gerarGraficoActionPerformed
+    private void entrarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarDadosActionPerformed
+            
+            if( this.comandoTexto.isVisible()){
+                
+                this.escnderCamposGeracaoGrafico();
+            }else{
+               this.mostrarCamposGeracaoGrafico();                
+               
+            }
+           
+    }//GEN-LAST:event_entrarDadosActionPerformed
+
+    private void gerarGráficoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarGráficoActionPerformed
+        // TODO add your handling code here:
+        this.entrarDados.setVisible(false);
+        String valores ="";
+        
+        this.createDataset();
+        this.criaGrafico();
+        this.setVisible(true);
+    }//GEN-LAST:event_gerarGráficoActionPerformed
+
+    private void comandoTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comandoTextoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comandoTextoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton gerarGrafico;
+    private javax.swing.JTextField comandoTexto;
+    public javax.swing.JButton entrarDados;
+    public javax.swing.JButton gerarGráfico;
+    private javax.swing.JLabel jLabel1;
     public javax.swing.JButton voltarPainelGraficoToPrincipal;
     // End of variables declaration//GEN-END:variables
-    
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public CategoryDataset createDataset() {
+
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        dataset.addValue(1000.0,"01/2012","Mês/Ano");
+        dataset.addValue(1750.0,"02/2012","Mês/Ano");
+        dataset.addValue(1500.0,"03/2012","Mês/Ano");
+
+        return dataset;
+
+    }
+    
+    
+   public void criaGrafico() {
+        CategoryDataset cds = createDataset();
+        String titulo = "Gráfico de Teste";
+        String eixoy = "Valores";
+        String txt_legenda = "Ledenda:";
+        boolean legenda = true;
+        boolean tooltips = true;
+        boolean urls = true;
+        JFreeChart graf = ChartFactory.createBarChart3D(titulo, txt_legenda, eixoy, cds, PlotOrientation.VERTICAL, legenda, tooltips, urls);
+        ChartPanel myChartPanel = new ChartPanel(graf, true);
+        myChartPanel.setSize(300, 200);
+        myChartPanel.setVisible(true);
+        this.removeAll();
+        this.add(myChartPanel);
+        this.revalidate();
+        this.repaint();
+    }
+
+   
+   public void mostrarCamposGeracaoGrafico(){
+       
+                this.entrarDados.setVisible(true);
+                this.jLabel1.setVisible(true);
+                this.gerarGráfico.setVisible(true);
+                this.comandoTexto.setVisible(true);
+   }
+   
+     public void escnderCamposGeracaoGrafico(){
+       
+               // this.entrarDados.setVisible(false);
+                this.jLabel1.setVisible(false);
+               // this.gerarGráfico.setVisible(false);
+                this.comandoTexto.setVisible(false);
+   }
+  
 }

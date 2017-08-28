@@ -26,7 +26,7 @@ public class PainelPrincipal extends javax.swing.JFrame implements ActionListene
         initComponents();
         ip = new InserePessoa();
         pg = new PainelGrafico();
-        this.setSize(400,300);
+        this.setSize(600,400);
         this.setBounds(0, 0, this.getWidth(), this.getHeight());
        
         this.getContentPane().add(ip); 
@@ -115,6 +115,7 @@ public class PainelPrincipal extends javax.swing.JFrame implements ActionListene
             pg.setVisible(true);
             ip.setVisible(false);
       }
+      pg.mostrarCamposGeracaoGrafico();
     }//GEN-LAST:event_geradorDeGraficoActionPerformed
 
     /**
