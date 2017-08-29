@@ -7,6 +7,7 @@ package aula4grafico;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -27,6 +28,8 @@ import org.jfree.data.category.DefaultCategoryDataset;
  * @author m80027
  */
 public class PainelGrafico extends javax.swing.JPanel implements ActionListener {
+    int[] vetorIdades = new int[50];
+    
      //EscolhaDeDados ed;
       //  ExibeGrafico eg;
     /**
@@ -37,7 +40,7 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
         this.setSize(500,300);
         this.setVisible(false);
         this.gerarGráfico.setVisible(false);
-        this.comandoTexto.setVisible(false);
+        this.comandoFaixa.setVisible(false);
         this.jLabel1.setVisible(false);
         //ed = new EscolhaDeDados();       
         
@@ -59,7 +62,11 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
         entrarDados = new javax.swing.JButton();
         gerarGráfico = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        comandoTexto = new javax.swing.JTextField();
+        comandoFaixa = new javax.swing.JTextField();
+        comandoGrafico = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        comandoPlotar = new javax.swing.JTextField();
 
         voltarPainelGraficoToPrincipal.setText("Voltar");
         voltarPainelGraficoToPrincipal.addActionListener(new java.awt.event.ActionListener() {
@@ -75,51 +82,78 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
             }
         });
 
-        gerarGráfico.setText("Gerar Gráfico");
+        gerarGráfico.setText("Ler acomandos");
         gerarGráfico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gerarGráficoActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Texto comando:");
+        jLabel1.setText("comando faixa");
 
-        comandoTexto.addActionListener(new java.awt.event.ActionListener() {
+        comandoFaixa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comandoTextoActionPerformed(evt);
+                comandoFaixaActionPerformed(evt);
             }
         });
+
+        comandoGrafico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comandoGraficoActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("comando gráfico");
+
+        jLabel3.setText("comando plotar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(entrarDados)
-                .addGap(6, 6, 6)
-                .addComponent(gerarGráfico)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(voltarPainelGraficoToPrincipal)
-                .addContainerGap(38, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(jLabel1))
+                        .addContainerGap()
+                        .addComponent(entrarDados)
+                        .addGap(6, 6, 6)
+                        .addComponent(gerarGráfico)
+                        .addGap(18, 18, 18)
+                        .addComponent(voltarPainelGraficoToPrincipal))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(comandoTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(138, 138, 138)
+                        .addComponent(jLabel2)))
+                .addContainerGap(46, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(comandoGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comandoFaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(137, 137, 137)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel1)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(56, 56, 56)
+                            .addComponent(comandoPlotar, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(jLabel1)
+                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(comandoTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(comandoPlotar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addGap(2, 2, 2)
+                .addComponent(comandoFaixa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(comandoGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(entrarDados)
                     .addComponent(gerarGráfico)
@@ -134,7 +168,7 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
 
     private void entrarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarDadosActionPerformed
             
-            if( this.comandoTexto.isVisible()){
+            if( this.comandoFaixa.isVisible()){
                 
                 this.escnderCamposGeracaoGrafico();
             }else{
@@ -147,23 +181,51 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
     private void gerarGráficoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarGráficoActionPerformed
         // TODO add your handling code here:
         this.entrarDados.setVisible(false);
-        String valores ="";
+        
+        
+        String txtPlotar =this.comandoPlotar.getText();
+        String txtFaixa =this.comandoFaixa.getText();
+        String txtGrafico =this.comandoGrafico.getText();
+        int faixa = this.tratarTxtComandoFaixa(txtFaixa);
+        int grafico = this.tratarTxtComandoTipoGrafico(txtGrafico);
+       // int[] idades = this.tratarTxtComandoPlotarIdades(txtPlotar);
+        
+        int[] idades = new int[50];
+        
+        for (int i = 0; i < 49; i++) {
+            Random r = new Random();
+            idades[i] = r.nextInt(50);
+        }
+        
+        
+        
+        
+      
+        
         
         this.createDataset();
         this.criaGrafico();
         this.setVisible(true);
     }//GEN-LAST:event_gerarGráficoActionPerformed
 
-    private void comandoTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comandoTextoActionPerformed
+    private void comandoFaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comandoFaixaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comandoTextoActionPerformed
+    }//GEN-LAST:event_comandoFaixaActionPerformed
+
+    private void comandoGraficoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comandoGraficoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comandoGraficoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField comandoTexto;
+    public javax.swing.JTextField comandoFaixa;
+    public javax.swing.JTextField comandoGrafico;
+    public javax.swing.JTextField comandoPlotar;
     public javax.swing.JButton entrarDados;
     public javax.swing.JButton gerarGráfico;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     public javax.swing.JButton voltarPainelGraficoToPrincipal;
     // End of variables declaration//GEN-END:variables
 
@@ -208,7 +270,7 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
                 this.entrarDados.setVisible(true);
                 this.jLabel1.setVisible(true);
                 this.gerarGráfico.setVisible(true);
-                this.comandoTexto.setVisible(true);
+                this.comandoFaixa.setVisible(true);
    }
    
      public void escnderCamposGeracaoGrafico(){
@@ -216,7 +278,39 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
                // this.entrarDados.setVisible(false);
                 this.jLabel1.setVisible(false);
                // this.gerarGráfico.setVisible(false);
-                this.comandoTexto.setVisible(false);
-   }
+                this.comandoFaixa.setVisible(false);
+   }     
+     
+    public int tratarTxtComandoFaixa(String txt) {
+        int intFaixa = txt.indexOf("faixa")+5;
+        //int intFaixa = posFaixa +1;
+        int valorFaixa =5;// Integer.parseInt(txt.substring(intFaixa, intFaixa+1)); 
+        
+        return valorFaixa;
+    }
+    
+     public int tratarTxtComandoTipoGrafico(String txt) {
+        int intGrafico = txt.indexOf("grafico")+7;
+        //int intFaixa = posFaixa +1;
+        int valorGrafico = 1;//Integer.parseInt(txt.substring(intGrafico, intGrafico+1)); 
+        
+        return valorGrafico;
+    }
+
+    public int[] tratarTxtComandoPlotarIdades(String txtPlotar) {
+       
+        int idades[] = new int[50];
+        int i =0;
+       /* while(txtPlotar.indexOf(txtPlotar)!= -1){
+            while(){
+                int idade = txtPlotar.indexOf(";")-2;
+                txtPlotar.sp
+                txtPlotar.replaceFirst(";", "*");
+                idades[i] = idade;
+            }
+        }*/
+        
+        return idades;
+    }
   
 }

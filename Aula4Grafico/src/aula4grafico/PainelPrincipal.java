@@ -16,6 +16,7 @@ public class PainelPrincipal extends javax.swing.JFrame implements ActionListene
 
     InserePessoa ip;
     PainelGrafico pg;
+    
 
     /* EventoInt ei;
     EventoDentro ed;*/

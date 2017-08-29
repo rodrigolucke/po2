@@ -47,7 +47,7 @@ public class InserePessoa extends javax.swing.JPanel {
 
         jLabel1.setText("Nome:");
 
-        jLabel2.setText("Data Nasc:");
+        jLabel2.setText("Idade");
 
         inserirPessoaPainelPessoa.setText("Inserir");
         inserirPessoaPainelPessoa.addActionListener(new java.awt.event.ActionListener() {
@@ -81,7 +81,7 @@ public class InserePessoa extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(51, Short.MAX_VALUE)
+                .addContainerGap(73, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
@@ -157,7 +157,6 @@ public class InserePessoa extends javax.swing.JPanel {
 
  public void addPessoa(Pessoa p) {       
             pessoas.add(p);
-           // p.toString();  
  }
     
  public void mostrarPessoas(){
