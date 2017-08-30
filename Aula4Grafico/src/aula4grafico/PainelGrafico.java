@@ -5,9 +5,11 @@
  */
 package aula4grafico;
 
+import com.sun.org.apache.xalan.internal.lib.ExsltStrings;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
+import java.util.regex.Pattern;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -197,9 +199,7 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
             idades[i] = r.nextInt(50);
         }
         
-        
-        
-        
+                
       
         
         
@@ -236,10 +236,46 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
     
     public CategoryDataset createDataset() {
 
+        int faixa = 5;
+        int maiorIdade =50;
+        String idadesTela = "1;50;5;10;15;20;30;45;33;14";
+        int range = maiorIdade / faixa;
+        String[] idades = idadesTela.split (";");
+        //prepara vetor idades
+        for (int i = 0; i < idades.length; i++) {
+              vetorIdades[i] = Integer.parseInt(idades[i]);
+        }
+        
+              
+        //prepara vetor range
+        int[][] vetRanges = new int[faixa][3];
+        int x = 0; 
+        for (int i = 0; i < maiorIdade; i = range +i) {         
+             vetRanges[x][0]=i;//limite inferior
+             vetRanges[x][1]=i+range;//limitesuperior
+             x++;                
+        } 
+        
+        //prepara vetor Valores dos Ranges        
+        x = 0; 
+        for (int i = vetRanges[x][0]= x ; i < maiorIdade; i = range +i) {  
+            for (int j = 0; vetorIdades[j]>0 ; j++) {
+                    //valorIdade     //limiteInferior    //valorIdade    //limiteSuperior
+                if(vetorIdades[j] >= vetRanges[x][0] && vetorIdades[j] <= vetRanges[x][1]){
+                    vetRanges[x][2]++;
+                }            
+            }  
+                          
+        }
+ 
+        //dataset.addValue(1000.0,"01/2012","Mês/Ano");
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.addValue(1000.0,"01/2012","Mês/Ano");
-        dataset.addValue(1750.0,"02/2012","Mês/Ano");
-        dataset.addValue(1500.0,"03/2012","Mês/Ano");
+        for (int i = 0; i < faixa; i++) {
+          dataset.addValue(vetRanges[i][0],"01/2012","Mês/Ano");
+          //dataset.addValue(vetRanges[i],"01/2012","Mês/Ano");
+        }
+    
+       
 
         return dataset;
 
