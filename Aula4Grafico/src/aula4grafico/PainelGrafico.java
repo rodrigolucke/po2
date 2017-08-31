@@ -257,22 +257,23 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
         } 
         
         //prepara vetor Valores dos Ranges        
-        x = 0; 
-        for (int i = vetRanges[x][0]= x ; i < maiorIdade; i = range +i) {  
+        
+        for (int i = 0 ; vetRanges[i][1] < maiorIdade; i++) {  
             for (int j = 0; vetorIdades[j]>0 ; j++) {
                     //valorIdade     //limiteInferior    //valorIdade    //limiteSuperior
-                if(vetorIdades[j] >= vetRanges[x][0] && vetorIdades[j] <= vetRanges[x][1]){
-                    vetRanges[x][2]++;
+                if(vetRanges[i][0] < vetorIdades[j]  && vetRanges[i][1] >=  vetorIdades[j]){
+                    vetRanges[i][2]= vetRanges[i][2]+1 ;
                 }            
             }  
                           
         }
  
-        //dataset.addValue(1000.0,"01/2012","Mês/Ano");
+        
+         //dataset.addValue(1000.0,"01/2012","Mês/Ano");
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         for (int i = 0; i < faixa; i++) {
-          dataset.addValue(vetRanges[i][0],"01/2012","Mês/Ano");
-          //dataset.addValue(vetRanges[i],"01/2012","Mês/Ano");
+          dataset.addValue(vetRanges[i][2],""+vetRanges[i][3]+"","Idade/Quantitdade");
+          
         }
     
        
