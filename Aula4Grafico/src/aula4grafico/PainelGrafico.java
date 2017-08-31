@@ -32,7 +32,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 public class PainelGrafico extends javax.swing.JPanel implements ActionListener {
     int[] vetorIdades = new int[50];
     String fraseTela;
-    int maiorIdade;
+    int maiorIdade = -1;
     int faixa = 5;
     
      //EscolhaDeDados ed;
@@ -239,20 +239,38 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
     
     public CategoryDataset createDataset() {
 
-        int faixa = 5;
-        int maiorIdade =50;
-       
         //String[] idades = fraseTela.split (";");
-        String fraseTela = "1;50;5;10;15;20;30;45;33;14";
-        int range = maiorIdade / faixa;
+        String fraseTela = "plotar idade: 1;50;5;10;15;20;30;45;33;14/faixa 5/tipo barra*";
+        String[] frases = fraseTela.split ("/");      
+      
         
-        
-        String[] idades = fraseTela.split (";");
-        //prepara vetor idades
-        for (int i = 0; i < idades.length; i++) {
-              vetorIdades[i] = Integer.parseInt(idades[i]);
-        }       
-              
+        for (String frase : frases) {
+            System.out.println(frase.substring(0,6));
+            if(frase.substring(0,6).equals("plotar")){
+                //frase.replace("plotar idade", "");
+                String[] idadesTela = frase.substring(14).split(";");
+                 //String[] idades = fraseTela.split (";");
+                //prepara vetor idades
+                for (int i = 0; i < idadesTela.length; i++) {
+                      vetorIdades[i] = Integer.parseInt(idadesTela[i]);
+                }                 
+            } 
+            if(frase.substring(0,5).equals("faixa")){
+                int faixa = Integer.parseInt(frase.substring(6,6));
+            }
+            
+            if(frase.substring(0,3).equals("tipo")){
+                String tipoGrágico = frase.substring(6);
+            }
+        }
+               
+        for (int idade : vetorIdades) {
+            if(idade > maiorIdade){
+                maiorIdade = idade;
+            }            
+        }
+                
+        int range = maiorIdade / faixa;                                
         //prepara vetor range
         int[][] vetRanges = new int[faixa][3];
         int x = 0; 
@@ -269,10 +287,8 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
                 if(vetRanges[i][0] < vetorIdades[j]  && vetRanges[i][1] >=  vetorIdades[j]){
                     vetRanges[i][2]= vetRanges[i][2]+1 ;
                 }            
-            }  
-                          
+            }                            
         }
- 
         
          //dataset.addValue(1000.0,"01/2012","Mês/Ano");
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
