@@ -5,7 +5,7 @@
  */
 package aula4grafico;
 
-import com.sun.org.apache.xalan.internal.lib.ExsltStrings;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -31,6 +31,9 @@ import org.jfree.data.category.DefaultCategoryDataset;
  */
 public class PainelGrafico extends javax.swing.JPanel implements ActionListener {
     int[] vetorIdades = new int[50];
+    String fraseTela;
+    int maiorIdade;
+    int faixa = 5;
     
      //EscolhaDeDados ed;
       //  ExibeGrafico eg;
@@ -238,14 +241,17 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
 
         int faixa = 5;
         int maiorIdade =50;
-        String idadesTela = "1;50;5;10;15;20;30;45;33;14";
+       
+        //String[] idades = fraseTela.split (";");
+        String fraseTela = "1;50;5;10;15;20;30;45;33;14";
         int range = maiorIdade / faixa;
-        String[] idades = idadesTela.split (";");
+        
+        
+        String[] idades = fraseTela.split (";");
         //prepara vetor idades
         for (int i = 0; i < idades.length; i++) {
               vetorIdades[i] = Integer.parseInt(idades[i]);
-        }
-        
+        }       
               
         //prepara vetor range
         int[][] vetRanges = new int[faixa][3];
@@ -256,8 +262,7 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
              x++;                
         } 
         
-        //prepara vetor Valores dos Ranges        
-        
+        //prepara vetor Valores dos Ranges               
         for (int i = 0 ; vetRanges[i][1] < maiorIdade; i++) {  
             for (int j = 0; vetorIdades[j]>0 ; j++) {
                     //valorIdade     //limiteInferior    //valorIdade    //limiteSuperior
@@ -272,8 +277,10 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
          //dataset.addValue(1000.0,"01/2012","Mês/Ano");
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         for (int i = 0; i < faixa; i++) {
-          dataset.addValue(vetRanges[i][2],""+vetRanges[i][3]+"","Idade/Quantitdade");
-          
+          String ranges = " "+vetRanges[i][0]+" - "+" "+vetRanges[i][1]+" ";
+          dataset.addValue(vetRanges[i][2],ranges,"numero/rangeIdade");
+                  // dataset.addValue(vetRanges[i][2],""++"","Idade/Quantitdade");
+        
         }
     
        
@@ -293,7 +300,7 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
         boolean urls = true;
         JFreeChart graf = ChartFactory.createBarChart3D(titulo, txt_legenda, eixoy, cds, PlotOrientation.VERTICAL, legenda, tooltips, urls);
         ChartPanel myChartPanel = new ChartPanel(graf, true);
-        myChartPanel.setSize(300, 200);
+        myChartPanel.setSize(500, 300);
         myChartPanel.setVisible(true);
         this.removeAll();
         this.add(myChartPanel);
