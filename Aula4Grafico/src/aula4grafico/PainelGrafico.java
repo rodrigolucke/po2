@@ -23,6 +23,8 @@ import org.jfree.chart.renderer.category.CategoryItemRenderer;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.general.PieDataset;
 
  
 /**
@@ -34,6 +36,12 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
     String fraseTela;
     int maiorIdade = -1;
     int faixa = 5;
+    int tipoGrafico; //1 bar - 2 pizza
+    int[][] vetRanges = new int[faixa][3];
+    PieDataset cdsPie;
+    CategoryDataset cds;
+    
+    
     
      //EscolhaDeDados ed;
       //  ExibeGrafico eg;
@@ -45,8 +53,10 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
         this.setSize(500,300);
         this.setVisible(false);
         this.gerarGráfico.setVisible(false);
-        this.comandoFaixa.setVisible(false);
-        this.jLabel1.setVisible(false);
+        this.textoComando.setVisible(false);
+        this.l1.setVisible(false);
+        this.l2.setVisible(false);
+        this.l3.setVisible(false);
         //ed = new EscolhaDeDados();       
         
            
@@ -66,12 +76,11 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
         voltarPainelGraficoToPrincipal = new javax.swing.JButton();
         entrarDados = new javax.swing.JButton();
         gerarGráfico = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        comandoFaixa = new javax.swing.JTextField();
-        comandoGrafico = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        comandoPlotar = new javax.swing.JTextField();
+        l1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textoComando = new javax.swing.JTextArea();
+        l3 = new javax.swing.JLabel();
+        l2 = new javax.swing.JLabel();
 
         voltarPainelGraficoToPrincipal.setText("Voltar");
         voltarPainelGraficoToPrincipal.addActionListener(new java.awt.event.ActionListener() {
@@ -94,23 +103,15 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
             }
         });
 
-        jLabel1.setText("comando faixa");
+        l1.setText("Texto Comando:");
 
-        comandoFaixa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comandoFaixaActionPerformed(evt);
-            }
-        });
+        textoComando.setColumns(20);
+        textoComando.setRows(5);
+        jScrollPane1.setViewportView(textoComando);
 
-        comandoGrafico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comandoGraficoActionPerformed(evt);
-            }
-        });
+        l3.setText("plotar idade: 1;50;5;10;15;20;30;45;33;14/faixa 5/tipo barra");
 
-        jLabel2.setText("comando gráfico");
-
-        jLabel3.setText("comando plotar");
+        l2.setText("Exemplo de comando:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -126,39 +127,31 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
                         .addGap(18, 18, 18)
                         .addComponent(voltarPainelGraficoToPrincipal))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(138, 138, 138)
-                        .addComponent(jLabel2)))
+                        .addGap(69, 69, 69)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(113, 113, 113)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(l2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(l1))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(l3)))
                 .addContainerGap(46, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(comandoGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comandoFaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(137, 137, 137)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel1)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(56, 56, 56)
-                            .addComponent(comandoPlotar, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel3)
+                .addComponent(l1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(comandoPlotar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(l2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(l3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addGap(2, 2, 2)
-                .addComponent(comandoFaixa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(comandoGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(entrarDados)
                     .addComponent(gerarGráfico)
@@ -173,7 +166,7 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
 
     private void entrarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarDadosActionPerformed
             
-            if( this.comandoFaixa.isVisible()){
+            if( this.textoComando.isVisible()){
                 
                 this.escnderCamposGeracaoGrafico();
             }else{
@@ -186,13 +179,8 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
     private void gerarGráficoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarGráficoActionPerformed
         // TODO add your handling code here:
         this.entrarDados.setVisible(false);
-        
-        
-        String txtPlotar =this.comandoPlotar.getText();
-        String txtFaixa =this.comandoFaixa.getText();
-        String txtGrafico =this.comandoGrafico.getText();
-        int faixa = this.tratarTxtComandoFaixa(txtFaixa);
-        int grafico = this.tratarTxtComandoTipoGrafico(txtGrafico);
+               
+
        // int[] idades = this.tratarTxtComandoPlotarIdades(txtPlotar);
         
         int[] idades = new int[50];
@@ -202,33 +190,20 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
             idades[i] = r.nextInt(50);
         }
         
-                
-      
         
-        
-        this.createDataset();
         this.criaGrafico();
         this.setVisible(true);
     }//GEN-LAST:event_gerarGráficoActionPerformed
 
-    private void comandoFaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comandoFaixaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comandoFaixaActionPerformed
-
-    private void comandoGraficoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comandoGraficoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comandoGraficoActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTextField comandoFaixa;
-    public javax.swing.JTextField comandoGrafico;
-    public javax.swing.JTextField comandoPlotar;
     public javax.swing.JButton entrarDados;
     public javax.swing.JButton gerarGráfico;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel l1;
+    private javax.swing.JLabel l2;
+    private javax.swing.JLabel l3;
+    public javax.swing.JTextArea textoComando;
     public javax.swing.JButton voltarPainelGraficoToPrincipal;
     // End of variables declaration//GEN-END:variables
 
@@ -237,30 +212,31 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public CategoryDataset createDataset() {
-
+   public void preparaDataset() {
         //String[] idades = fraseTela.split (";");
-        String fraseTela = "plotar idade: 1;50;5;10;15;20;30;45;33;14/faixa 5/tipo barra*";
-        String[] frases = fraseTela.split ("/");      
-      
-        
+        String fraseTela = this.textoComando.getText();
+                //"plotar idade: 1;50;5;10;15;20;30;45;33;14/faixa 5/tipo 1";
+        String[] frases = fraseTela.split ("/");  
         for (String frase : frases) {
-            System.out.println(frase.substring(0,6));
-            if(frase.substring(0,6).equals("plotar")){
-                //frase.replace("plotar idade", "");
+            
+            if(frase.substring(0,6).equals("plotar")){               
                 String[] idadesTela = frase.substring(14).split(";");
-                 //String[] idades = fraseTela.split (";");
                 //prepara vetor idades
                 for (int i = 0; i < idadesTela.length; i++) {
-                      vetorIdades[i] = Integer.parseInt(idadesTela[i]);
+                     this.vetorIdades[i] = Integer.parseInt(idadesTela[i]);
                 }                 
             } 
             if(frase.substring(0,5).equals("faixa")){
-                int faixa = Integer.parseInt(frase.substring(6,6));
+                this.faixa = Integer.parseInt(frase.substring(6));
             }
             
-            if(frase.substring(0,3).equals("tipo")){
-                String tipoGrágico = frase.substring(6);
+            if(frase.substring(0,4).equals("tipo")){
+                String tipoGrágico = frase.substring(5);
+                if(tipoGrágico.equals("barra")){
+                    this.tipoGrafico = 1;
+                }else{
+                    this.tipoGrafico = 2;
+                }
             }
         }
                
@@ -272,7 +248,7 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
                 
         int range = maiorIdade / faixa;                                
         //prepara vetor range
-        int[][] vetRanges = new int[faixa][3];
+        
         int x = 0; 
         for (int i = 0; i < maiorIdade; i = range +i) {         
              vetRanges[x][0]=i;//limite inferior
@@ -289,32 +265,59 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
                 }            
             }                            
         }
-        
-         //dataset.addValue(1000.0,"01/2012","Mês/Ano");
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        for (int i = 0; i < faixa; i++) {
-          String ranges = " "+vetRanges[i][0]+" - "+" "+vetRanges[i][1]+" ";
-          dataset.addValue(vetRanges[i][2],ranges,"numero/rangeIdade");
-                  // dataset.addValue(vetRanges[i][2],""++"","Idade/Quantitdade");
-        
-        }
-    
-       
-
-        return dataset;
-
+ 
     }
+   
+   
+   public CategoryDataset criaDataSetBar(){  
+   DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+            for (int i = 0; i < faixa; i++) {
+                String ranges = " "+vetRanges[i][0]+" - "+" "+vetRanges[i][1]+" ";
+                dataset.addValue(vetRanges[i][2],ranges,"numero/rangeIdade");
+            } 
+            
+         return  dataset;
+   }        
+    public PieDataset criaDataSetPie(){    
+         //dataset.addValue(1000.0,"01/2012","Mês/Ano");
+        
+        DefaultPieDataset datasetPie = new DefaultPieDataset();
+        for (int i = 0; i < faixa; i++) {
+            String ranges = " "+vetRanges[i][0]+" - "+" "+vetRanges[i][1]+" ";
+            datasetPie.setValue(ranges,vetRanges[i][2]);
+        }         
+        return  datasetPie;
+     }
+
     
     
    public void criaGrafico() {
-        CategoryDataset cds = createDataset();
-        String titulo = "Gráfico de Teste";
+        
+       this.preparaDataset();
+   
+       if(this.tipoGrafico == 1){
+            this.cds = this.criaDataSetBar();
+       }else{
+            this.cdsPie = this.criaDataSetPie();
+       }
+        //DefaultPieDataset cdsPie = (DefaultPieDataset) createDataset();
+     
         String eixoy = "Valores";
         String txt_legenda = "Ledenda:";
         boolean legenda = true;
         boolean tooltips = true;
         boolean urls = true;
-        JFreeChart graf = ChartFactory.createBarChart3D(titulo, txt_legenda, eixoy, cds, PlotOrientation.VERTICAL, legenda, tooltips, urls);
+        JFreeChart graf;
+        if(this.tipoGrafico == 1){
+           
+             graf = ChartFactory.createBarChart3D("Gráfico de Idades", txt_legenda, eixoy, this.cds, PlotOrientation.VERTICAL, legenda, tooltips, urls);
+        }else{
+          
+           //  graf =  ChartFactory.createPieChart(titulo, cdsPie);
+            graf = ChartFactory.createPieChart("Gráfico Pizza Idades ",  this.cdsPie, true, true, false);
+        }
+        
+         
         ChartPanel myChartPanel = new ChartPanel(graf, true);
         myChartPanel.setSize(500, 300);
         myChartPanel.setVisible(true);
@@ -328,17 +331,21 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
    public void mostrarCamposGeracaoGrafico(){
        
                 this.entrarDados.setVisible(true);
-                this.jLabel1.setVisible(true);
+               this.l1.setVisible(true);
+                this.l2.setVisible(true);
+                this.l3.setVisible(true);
                 this.gerarGráfico.setVisible(true);
-                this.comandoFaixa.setVisible(true);
+                this.textoComando.setVisible(true);
    }
    
      public void escnderCamposGeracaoGrafico(){
        
                // this.entrarDados.setVisible(false);
-                this.jLabel1.setVisible(false);
+                this.l1.setVisible(false);
+                this.l2.setVisible(false);
+                this.l3.setVisible(false);
                // this.gerarGráfico.setVisible(false);
-                this.comandoFaixa.setVisible(false);
+                this.textoComando.setVisible(false);
    }     
      
     public int tratarTxtComandoFaixa(String txt) {
