@@ -127,9 +127,6 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
                         .addGap(18, 18, 18)
                         .addComponent(voltarPainelGraficoToPrincipal))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(113, 113, 113)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(l2)
@@ -138,7 +135,10 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
                                 .addComponent(l1))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(l3)))
+                        .addComponent(l3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -210,7 +210,7 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
    public void preparaDataset() {
         //String[] idades = fraseTela.split (";");
         String fraseTela = this.textoComando.getText();
-       // String fraseTela = "plotar idade: 1;50;57;57;58;5;10;15;20;30;45;33;14/faixa 5/tipo 1";
+       // String fraseTela = "plotar idade: 1;50;57;57;58;5;10;15;20;30;45;89;98;67;85;33;14/faixa 3/tipo barra";
         String[] frases = fraseTela.split ("/");  
         for (String frase : frases) {
             
@@ -240,13 +240,12 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
                 this.maiorIdade = idade;
             }            
         }
-                
-        int range = this.maiorIdade / this.faixa;                                
-        //prepara vetor range
-        this.vetRanges = new int[faixa+1][3];
-        int x = 0; 
-        int v = 0;
-        for (int j = 0; j < vetRanges.length; j++) { 
+               
+        
+        /*
+        
+        
+         while( this.vetRanges[x][1] < this.maiorIdade) { 
            
             if(x > this.faixa ){
                 this.vetRanges[x][0]=v + 1 ;//limite inferior
@@ -256,6 +255,27 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
                 this.vetRanges[x][1]= v + range;//limitesuperior
                 
             }
+             x++;
+             v = range +v;
+        } 
+        
+        
+        */
+        int range = this.maiorIdade / this.faixa;     
+        int resto = this.maiorIdade % this.faixa;    
+        //prepara vetor range
+        this.vetRanges = new int[faixa][3];
+        int x = 0; 
+        int v = 0;
+        while(x < vetRanges.length) { 
+              if(x+1 == this.faixa){
+                 this.vetRanges[x][0]= v + 1 ;//limite inferior
+                 this.vetRanges[x][1]= v + range + resto;//limitesuperior
+             }else{
+                this.vetRanges[x][0]= v + 1 ;//limite inferior
+                this.vetRanges[x][1]= v + range;//limitesuperior
+
+              }  
              x++;
              v = range +v;
         } 
@@ -282,7 +302,6 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
                
  
     }
-   
    
    public CategoryDataset criaDataSetBar(){  
    DefaultCategoryDataset dataset = new DefaultCategoryDataset();
