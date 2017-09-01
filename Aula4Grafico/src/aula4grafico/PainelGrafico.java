@@ -35,9 +35,9 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
     int[] vetorIdades = new int[50];
     String fraseTela;
     int maiorIdade = -1;
-    int faixa = 5;
+    int faixa;
     int tipoGrafico; //1 bar - 2 pizza
-    int[][] vetRanges = new int[faixa][3];
+    int[][] vetRanges;
     PieDataset cdsPie;
     CategoryDataset cds;
     
@@ -183,12 +183,7 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
 
        // int[] idades = this.tratarTxtComandoPlotarIdades(txtPlotar);
         
-        int[] idades = new int[50];
-        
-        for (int i = 0; i < 49; i++) {
-            Random r = new Random();
-            idades[i] = r.nextInt(50);
-        }
+        int[] idades = new int[50];     
         
         
         this.criaGrafico();
@@ -215,7 +210,7 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
    public void preparaDataset() {
         //String[] idades = fraseTela.split (";");
         String fraseTela = this.textoComando.getText();
-                //"plotar idade: 1;50;5;10;15;20;30;45;33;14/faixa 5/tipo 1";
+       // String fraseTela = "plotar idade: 1;50;57;57;58;5;10;15;20;30;45;33;14/faixa 5/tipo 1";
         String[] frases = fraseTela.split ("/");  
         for (String frase : frases) {
             
@@ -231,8 +226,8 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
             }
             
             if(frase.substring(0,4).equals("tipo")){
-                String tipoGrágico = frase.substring(5);
-                if(tipoGrágico.equals("barra")){
+                String tipoGrafico = frase.substring(5);
+                if(tipoGrafico.equals("barra")){
                     this.tipoGrafico = 1;
                 }else{
                     this.tipoGrafico = 2;
@@ -241,39 +236,59 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
         }
                
         for (int idade : vetorIdades) {
-            if(idade > maiorIdade){
-                maiorIdade = idade;
+            if(idade >this.maiorIdade){
+                this.maiorIdade = idade;
             }            
         }
                 
-        int range = maiorIdade / faixa;                                
+        int range = this.maiorIdade / this.faixa;                                
         //prepara vetor range
-        
+        this.vetRanges = new int[faixa+1][3];
         int x = 0; 
-        for (int i = 0; i < maiorIdade; i = range +i) {         
-             vetRanges[x][0]=i;//limite inferior
-             vetRanges[x][1]=i+range;//limitesuperior
-             x++;                
+        int v = 0;
+        for (int j = 0; j < vetRanges.length; j++) { 
+           
+            if(x > this.faixa ){
+                this.vetRanges[x][0]=v + 1 ;//limite inferior
+                this.vetRanges[x][1]=v + range;//limitesuperior
+            }else{
+                this.vetRanges[x][0]= v + 1 ;//limite inferior
+                this.vetRanges[x][1]= v + range;//limitesuperior
+                
+            }
+             x++;
+             v = range +v;
         } 
         
         //prepara vetor Valores dos Ranges               
-        for (int i = 0 ; vetRanges[i][1] < maiorIdade; i++) {  
+       /* for (int i = 0 ; this.vetRanges[i][1] < maiorIdade; i++) {  
             for (int j = 0; vetorIdades[j]>0 ; j++) {
-                    //valorIdade     //limiteInferior    //valorIdade    //limiteSuperior
-                if(vetRanges[i][0] < vetorIdades[j]  && vetRanges[i][1] >=  vetorIdades[j]){
-                    vetRanges[i][2]= vetRanges[i][2]+1 ;
+                    //valorIdade       //limiteInferior         //valorIdade    //limiteSuperior
+                if(this.vetorIdades[j] >= this.vetRanges[i][0]  && this.vetorIdades[j] <= this.vetRanges[i][1]   ){
+                    this.vetRanges[i][2]= this.vetRanges[i][2]+1 ;
                 }            
             }                            
-        }
+        }*/
+       
+       for (int i = 0; i < vetRanges.length; i++) {
+           for (int j = 0; vetorIdades[j]>0 ; j++) {
+                    //valorIdade       //limiteInferior         //valorIdade    //limiteSuperior
+                if(this.vetorIdades[j] >= this.vetRanges[i][0]  && this.vetorIdades[j] <= this.vetRanges[i][1]   ){
+                    this.vetRanges[i][2]= this.vetRanges[i][2]+1 ;
+                }            
+            }  
+       }
+       
+               
  
     }
    
    
    public CategoryDataset criaDataSetBar(){  
    DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-            for (int i = 0; i < faixa; i++) {
-                String ranges = " "+vetRanges[i][0]+" - "+" "+vetRanges[i][1]+" ";
-                dataset.addValue(vetRanges[i][2],ranges,"numero/rangeIdade");
+            for (int i = 0; i < vetRanges.length; i++) {
+                String ranges = " "+this.vetRanges[i][0] +" - "+" "+this.vetRanges[i][1]+" ";
+                dataset.addValue(this.vetRanges[i][2],ranges,"numero/rangeIdade");
             } 
             
          return  dataset;
@@ -282,9 +297,9 @@ public class PainelGrafico extends javax.swing.JPanel implements ActionListener 
          //dataset.addValue(1000.0,"01/2012","Mês/Ano");
         
         DefaultPieDataset datasetPie = new DefaultPieDataset();
-        for (int i = 0; i < faixa; i++) {
-            String ranges = " "+vetRanges[i][0]+" - "+" "+vetRanges[i][1]+" ";
-            datasetPie.setValue(ranges,vetRanges[i][2]);
+        for (int i = 0; i < vetRanges.length; i++) {
+            String ranges = " "+this.vetRanges[i][0]+" - "+" "+this.vetRanges[i][1]+" ";
+            datasetPie.setValue(ranges,this.vetRanges[i][2]);
         }         
         return  datasetPie;
      }
