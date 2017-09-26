@@ -14,36 +14,52 @@ import java.awt.event.MouseListener;
  *
  * @author m80027
  */
-public class EventoIneserir implements MouseListener {
-
+public class EventoIneserir implements MouseListener{
+TelaPrincipal tp;
+Banco coon = new Banco();
     public EventoIneserir( TelaPrincipal tp) {
-        
+        this.tp = tp;
+       
     }
 
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        
+         System.out.println(e);
+         if(tp.ti.isVisible())
+           tp.ti.setVisible(false);
+        else
+          tp.ti.setVisible(true);
+         
+        tp.ti.setLocation(200, -100);
+        if(e.equals("Inserir")){
+           coon.inserir(tp.ti.getjTextField1().getText(),Integer.parseInt( tp.ti.getjTextField2().getText()));
+            
+        }
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
+        /*if(tp.ti.isVisible())
+            tp.ti.setVisible(false);
+        else
+        tp.ti.setVisible(true);*/
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
    
     

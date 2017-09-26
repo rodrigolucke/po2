@@ -5,6 +5,10 @@
  */
 package BancodeDados;
 
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JToggleButton;
+
 /**
  *
  * @author m72583
@@ -19,8 +23,64 @@ public class TelaInserir extends TelaPai {
         this.setSize(300,300);
         this.jLabel1.setText("Nome:");
         this.jLabel2.setText("Idade:");
+        this.jTextField1.setName("nome");
+        this.jTextField2.setName("idade");
         this.jToggleButton1.setText("Inserir");
     }
+
+    @Override
+    public void setjToggleButton1(JToggleButton jToggleButton1) {
+        super.setjToggleButton1(jToggleButton1); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public JToggleButton getjToggleButton1() {
+        return super.getjToggleButton1(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setjTextField2(JTextField jTextField2) {
+        super.setjTextField2(jTextField2); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public JTextField getjTextField2() {
+        return super.getjTextField2(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setjTextField1(JTextField jTextField1) {
+        super.setjTextField1(jTextField1); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public JTextField getjTextField1() {
+        return super.getjTextField1(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setjLabel2(JLabel jLabel2) {
+        super.setjLabel2(jLabel2); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public JLabel getjLabel2() {
+        return super.getjLabel2(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setjLabel1(JLabel jLabel1) {
+        super.setjLabel1(jLabel1); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public JLabel getjLabel1() {
+        return super.getjLabel1(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
