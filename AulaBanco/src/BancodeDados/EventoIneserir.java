@@ -15,27 +15,31 @@ import java.awt.event.MouseListener;
  * @author m80027
  */
 public class EventoIneserir implements MouseListener{
-TelaPrincipal tp;
+TelaInserir ti;
 Banco coon = new Banco();
-    public EventoIneserir( TelaPrincipal tp) {
-        this.tp = tp;
+    public EventoIneserir( TelaInserir ti) {
+        this.ti = ti;
        
     }
 
 
     @Override
     public void mouseClicked(MouseEvent e) {
-         System.out.println(e);
-         if(tp.ti.isVisible())
-           tp.ti.setVisible(false);
-        else
-          tp.ti.setVisible(true);
-         
-        tp.ti.setLocation(200, -100);
-        if(e.equals("Inserir")){
-           coon.inserir(tp.ti.getjTextField1().getText(),Integer.parseInt( tp.ti.getjTextField2().getText()));
-            
-        }
+        System.out.println("BancodeDados.EventoIneserir.mouseClicked()");
+        
+        ti.pessoa.setNome(ti.getjTextField1().getText());
+        //ti.pessoa.setIdade(Integer.parseInt(ti.getjTextField2().getText()));
+        ti.pessoa.setIdade(35);
+      
+      /* ti.pessoa.setNome("testes");
+       ti.pessoa.setIdade(35);*/
+        
+       coon.inserir(ti.getPessoa());
+          
+       ti.getjTextField1().setText("");
+       ti.getjTextField2().setText("");
+      
+        
     }
 
     @Override
@@ -51,10 +55,10 @@ Banco coon = new Banco();
     @Override
     public void mouseEntered(MouseEvent e) {
        
-        /*if(tp.ti.isVisible())
-            tp.ti.setVisible(false);
+        /*if(ti.ti.isVisible())
+            ti.ti.setVisible(false);
         else
-        tp.ti.setVisible(true);*/
+        ti.ti.setVisible(true);*/
     }
 
     @Override

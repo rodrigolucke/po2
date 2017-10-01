@@ -14,18 +14,25 @@ import javax.swing.JToggleButton;
  * @author m72583
  */
 public class TelaInserir extends TelaPai {
-
+EventoIneserir ei;
+Pessoa pessoa;
     /**
      * Creates new form TelaInserir
      */
     public TelaInserir() {
         initComponents();
+        pessoa = new Pessoa();
         this.setSize(300,300);
         this.jLabel1.setText("Nome:");
         this.jLabel2.setText("Idade:");
         this.jTextField1.setName("nome");
         this.jTextField2.setName("idade");
-        this.jToggleButton1.setText("Inserir");
+        this.jToggleButton1.setText("Salvar");
+        
+        ei = new EventoIneserir(this);
+        this.jToggleButton1.addMouseListener(ei);
+        
+       
     }
 
     @Override
@@ -76,6 +83,14 @@ public class TelaInserir extends TelaPai {
     @Override
     public JLabel getjLabel1() {
         return super.getjLabel1(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
     

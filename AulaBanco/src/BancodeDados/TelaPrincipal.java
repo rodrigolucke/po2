@@ -6,6 +6,7 @@
 package BancodeDados;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -16,7 +17,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     TelaExcluir te;
     TelaConsultar tc;
     TelaMedia tm;
-    EventoIneserir ei;
     /**
      * Creates new form TelaPrincipal
      */
@@ -39,13 +39,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.getContentPane().add(tc);
         
         
-         tm = new TelaMedia();
+        tm = new TelaMedia();
         this.tm.setVisible(false);
         this.getContentPane().add(tm);
         
         
-        ei = new EventoIneserir(this);
-        this.inserir.addMouseListener(ei);
+      
         
     }
 
@@ -67,6 +66,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         inserir.setText("Inserir");
+        inserir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                inserirMouseClicked(evt);
+            }
+        });
         getContentPane().add(inserir);
         inserir.setBounds(23, 56, 81, 23);
 
@@ -84,6 +88,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void inserirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inserirMouseClicked
+          
+ 
+         if(ti.isVisible())
+           ti.setVisible(false);
+        else
+          ti.setVisible(true);         
+         ti.setLocation(200, -100);
+    
+    }//GEN-LAST:event_inserirMouseClicked
 
     /**
      * @param args the command line arguments

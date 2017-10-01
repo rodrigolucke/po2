@@ -38,7 +38,7 @@ public class Banco {
        
         try{
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/aula?" + "user=root&password=root");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/db?" + "user=root&password=root");
             /*pstmt = conn.prepareStatement("insert into teste values(?,?)");
             
             String aux = "teste";
@@ -49,23 +49,23 @@ public class Banco {
             pstmt.execute();
             
             pstmt.close();*/
-            conn.close();
+           // conn.close();
         }
         catch(Exception e){
             e.printStackTrace();
         }
     }
     
-    public void inserir(String nome, int idade){
+    public void inserir(Pessoa p){
        
         try{
            this.conectar();
             
            
-            pstmt = conn.prepareStatement("INSERT INTO teste VALUES(?,?)");
+            pstmt = conn.prepareStatement("INSERT INTO user VALUES(?,?)");
             
-            pstmt.setString(1, nome);
-            pstmt.setInt(2, idade);
+            pstmt.setString(1,p.getNome());
+            pstmt.setInt(2, p.getIdade());
             pstmt.execute();
             
            pstmt.close();
