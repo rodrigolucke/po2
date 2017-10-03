@@ -15,7 +15,7 @@ import javax.swing.JToggleButton;
  */
 public class TelaInserir extends TelaPai {
 EventoIneserir ei;
-Pessoa pessoa;
+
     /**
      * Creates new form TelaInserir
      */

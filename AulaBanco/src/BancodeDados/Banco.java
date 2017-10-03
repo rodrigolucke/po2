@@ -15,6 +15,7 @@ import java.sql.*;
 public class Banco {
      Connection conn;
      PreparedStatement pstmt;
+     Pessoa p;
 
     public Connection getConn() {
         return conn;
@@ -79,19 +80,25 @@ public class Banco {
     
     
     
-    public void consultar(String nome, int idade){
-        Connection conn;
-        PreparedStatement pstmt;
+    public Pessoa consultar(String nome){
+      
         try{
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/aula?" + "user=root&password=root");
-            pstmt = conn.prepareStatement("SELECT * FROM  teste WHERE nome =?");
+           this.conectar();
+            pstmt = conn.prepareStatement("SELECT * FROM  user WHERE nome =? LIMIT 1");
             
             
             pstmt.setString(1, nome);
             
+
+    
+          ResultSet resultado;    
+            resultado = pstmt.executeQuery();
+      
+            p = new Pessoa();
+            p.setNome(resultado.getString(1));
+            p.setIdade(resultado.getInt(2));
             
-            pstmt.executeQuery();    
+           
             pstmt.close();
             conn.close();
             
@@ -99,20 +106,46 @@ public class Banco {
         catch(Exception e){
             e.printStackTrace();
         }
+        
+        
+       return p ;
     }
     
-    public void calcularMedia (){
-        Connection conn;
-        PreparedStatement pstmt;
+    public int[] calcularMedia (){
+      
+        int[] retorno = new int[2]; 
         try{
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/aula?" + "user=root&password=root");
-            pstmt = conn.prepareStatement("");
+          
+            pstmt = conn.prepareStatement("SELECT sum(idade) as totalIdades,count(1) as totalPessoas FROM  user ");
             
-            
+            ResultSet resultado;    
+            resultado = pstmt.executeQuery();
+            retorno[0] = resultado.getInt("totalIdades");
+            retorno[0] = resultado.getInt("totalPessoas");
             
             pstmt.close();
             conn.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return retorno;
+    }
+
+    public void excluir(String nome) {
+       try{
+           this.conectar();
+            
+           
+            pstmt = conn.prepareStatement("DELETE FROM user WHERE nome =(?)");
+            
+            pstmt.setString(1,nome);
+            
+            pstmt.execute();
+            
+           pstmt.close();
+           conn.close();
+            
         }
         catch(Exception e){
             e.printStackTrace();

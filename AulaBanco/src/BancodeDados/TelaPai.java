@@ -14,7 +14,7 @@ import javax.swing.JToggleButton;
  * @author m72583
  */
 public class TelaPai extends javax.swing.JPanel {
-
+Pessoa pessoa;
     /**
      * Creates new form TelaInserir
      */
@@ -114,6 +114,14 @@ public class TelaPai extends javax.swing.JPanel {
 
     public void setjToggleButton1(JToggleButton jToggleButton1) {
         this.jToggleButton1 = jToggleButton1;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

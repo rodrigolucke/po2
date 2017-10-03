@@ -29,7 +29,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.getContentPane().add(ti);
        
         
-         te = new TelaExcluir();
+        te = new TelaExcluir();
         this.te.setVisible(false);
         this.getContentPane().add(te);
        
@@ -75,14 +75,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
         inserir.setBounds(23, 56, 81, 23);
 
         excluir.setText("Excluir");
+        excluir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                excluirMouseClicked(evt);
+            }
+        });
         getContentPane().add(excluir);
         excluir.setBounds(23, 97, 81, 23);
 
         consultar.setText("Consultar");
+        consultar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                consultarMouseClicked(evt);
+            }
+        });
         getContentPane().add(consultar);
         consultar.setBounds(25, 138, 79, 23);
 
         media.setText("Média");
+        media.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mediaMouseClicked(evt);
+            }
+        });
         getContentPane().add(media);
         media.setBounds(25, 184, 79, 23);
 
@@ -99,6 +114,30 @@ public class TelaPrincipal extends javax.swing.JFrame {
          ti.setLocation(200, -100);
     
     }//GEN-LAST:event_inserirMouseClicked
+
+    private void excluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_excluirMouseClicked
+         if(te.isVisible())
+           te.setVisible(false);
+        else
+          te.setVisible(true);         
+          te.setLocation(200, -100);
+    }//GEN-LAST:event_excluirMouseClicked
+
+    private void consultarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultarMouseClicked
+        if(tc.isVisible())
+           tc.setVisible(false);
+        else
+          tc.setVisible(true);         
+          tc.setLocation(200, -100);
+    }//GEN-LAST:event_consultarMouseClicked
+
+    private void mediaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mediaMouseClicked
+       if(tm.isVisible())
+           tm.setVisible(false);
+        else
+          tm.setVisible(true);         
+          tm.setLocation(200, -100);
+    }//GEN-LAST:event_mediaMouseClicked
 
     /**
      * @param args the command line arguments

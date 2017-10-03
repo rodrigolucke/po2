@@ -14,10 +14,10 @@ import java.awt.event.MouseListener;
  *
  * @author m80027
  */
-public class EventoIneserir implements MouseListener{
-TelaInserir ti;
+public class EventoCalcularMedia implements MouseListener{
+TelaMedia ti;
 Banco coon = new Banco();
-    public EventoIneserir( TelaInserir ti) {
+    public EventoCalcularMedia( TelaMedia ti) {
         this.ti = ti;
        
     }
@@ -27,17 +27,18 @@ Banco coon = new Banco();
     public void mouseClicked(MouseEvent e) {
         System.out.println("BancodeDados.EventoIneserir.mouseClicked()");
         
-        ti.pessoa.setNome(ti.getjTextField1().getText());
-        //ti.pessoa.setIdade(Integer.parseInt(ti.getjTextField2().getText()));
-        ti.pessoa.setIdade(35);
-      
-       ti.pessoa.setNome("testese");
-      /* ti.pessoa.setIdade(35);*/
         
-       coon.inserir(ti.getPessoa());
+      
+      /* ti.pessoa.setNome("testes");
+       ti.pessoa.setIdade(35);*/
+        int[] retorno = new int[2];
+         retorno = coon.calcularMedia();
           
-       ti.getjTextField1().setText("");
-       ti.getjTextField2().setText("");
+        String campo1 = "Total de "+retorno[0] + "e total de idades "+ retorno[1]; 
+        String campo2 = "Média total de "+  retorno[0]/ retorno[1]+".";
+        
+       ti.getjTextField1().setText(campo1);
+       ti.getjTextField2().setText(campo2);
       
         
     }

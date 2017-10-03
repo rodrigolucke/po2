@@ -5,16 +5,18 @@
  */
 package BancodeDados;
 
+import javax.accessibility.AccessibleContext;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
+import javax.swing.plaf.PanelUI;
 
 /**
  *
  * @author m72583
  */
 public class TelaConsultar extends TelaPai {
-
+    EventoConsultar co;
     /**
      * Creates new form TelaInserir
      */
@@ -24,6 +26,9 @@ public class TelaConsultar extends TelaPai {
         this.jLabel1.setText("Nome:");
         this.jLabel2.setText("Idade:");
         this.jToggleButton1.setText("Consultar");
+        
+        co = new EventoConsultar(this);
+        this.jToggleButton1.addMouseListener(co);
     }
 
     @Override
@@ -74,6 +79,46 @@ public class TelaConsultar extends TelaPai {
     @Override
     public JLabel getjLabel1() {
         return super.getjLabel1(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setPessoa(Pessoa pessoa) {
+        super.setPessoa(pessoa); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Pessoa getPessoa() {
+        return super.getPessoa(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public AccessibleContext getAccessibleContext() {
+        return super.getAccessibleContext(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    protected String paramString() {
+        return super.paramString(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getUIClassID() {
+        return super.getUIClassID(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setUI(PanelUI ui) {
+        super.setUI(ui); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public PanelUI getUI() {
+        return super.getUI(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void updateUI() {
+        super.updateUI(); //To change body of generated methods, choose Tools | Templates.
     }
 
    

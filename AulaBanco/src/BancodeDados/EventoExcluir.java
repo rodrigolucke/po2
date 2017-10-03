@@ -14,10 +14,11 @@ import java.awt.event.MouseListener;
  *
  * @author m80027
  */
-public class EventoIneserir implements MouseListener{
-TelaInserir ti;
+public class EventoExcluir implements MouseListener{
+TelaExcluir ti;
 Banco coon = new Banco();
-    public EventoIneserir( TelaInserir ti) {
+    public EventoExcluir( TelaExcluir ti) {
+        
         this.ti = ti;
        
     }
@@ -27,14 +28,14 @@ Banco coon = new Banco();
     public void mouseClicked(MouseEvent e) {
         System.out.println("BancodeDados.EventoIneserir.mouseClicked()");
         
-        ti.pessoa.setNome(ti.getjTextField1().getText());
+        //ti.pessoa.setNome(ti.getjTextField1().getText());
         //ti.pessoa.setIdade(Integer.parseInt(ti.getjTextField2().getText()));
-        ti.pessoa.setIdade(35);
-      
-       ti.pessoa.setNome("testese");
-      /* ti.pessoa.setIdade(35);*/
+      //  ti.pessoa.setIdade(35);
+      String nome = "testes";
+     
+      // ti.pessoa.setIdade(35);*/
         
-       coon.inserir(ti.getPessoa());
+       coon.excluir(nome);
           
        ti.getjTextField1().setText("");
        ti.getjTextField2().setText("");

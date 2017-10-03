@@ -14,7 +14,7 @@ import javax.swing.JToggleButton;
  * @author m72583
  */
 public class TelaExcluir extends TelaPai {
-
+EventoExcluir ex;
     /**
      * Creates new form TelaInserir
      */
@@ -24,6 +24,8 @@ public class TelaExcluir extends TelaPai {
         this.jLabel1.setText("Nome:");
         this.jLabel2.setText("Idade:");
         this.jToggleButton1.setText("Excluir");
+        ex = new EventoExcluir(this);
+        this.jToggleButton1.addMouseListener(ex);
     }
 
     /**
