@@ -32,13 +32,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         te = new TelaExcluir();
         this.te.setVisible(false);
         this.getContentPane().add(te);
-       
-        
-        tc = new TelaConsultar();
-        this.tc.setVisible(false);
-        this.getContentPane().add(tc);
-        
-        
+     
     }
 
     /**
@@ -119,7 +113,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_tarefasMouseClicked
 
     private void inserirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inserirMouseClicked
-        
+        System.out.println("aulaMenu.TelaPrincipal.inserirMouseClicked()");
          if(ti.isVisible())
            ti.setVisible(false);
          else
@@ -140,7 +134,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_excluirMouseClicked
 
     private void consultarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultarMouseClicked
-         if(tc.isVisible()){
+        
+        if(tc.isVisible()){
            tc.setVisible(false);
         }else{
           tc.setVisible(true);  

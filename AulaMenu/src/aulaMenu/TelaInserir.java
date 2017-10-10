@@ -21,12 +21,11 @@ EventoIneserir ei;
      */
     public TelaInserir() {
         initComponents();
-        pessoa = new PontosGrafico();
+        pontos = new PontosGrafico();
         this.setSize(300,300);
-        this.jLabel1.setText("Nome:");
-        this.jLabel2.setText("Idade:");
-        this.jTextField1.setName("nome");
-        this.jTextField2.setName("idade");
+        this.jLabel1.setText("X:");
+        this.jLabel2.setText("Y:");
+      
         this.jToggleButton1.setText("Salvar");
         
         ei = new EventoIneserir(this);
@@ -85,13 +84,17 @@ EventoIneserir ei;
         return super.getjLabel1(); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public PontosGrafico getPessoa() {
-        return pessoa;
+    @Override
+    public void setPontos(PontosGrafico pontos) {
+        super.setPontos(pontos); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void setPessoa(PontosGrafico pessoa) {
-        this.pessoa = pessoa;
+    @Override
+    public PontosGrafico getPontos() {
+        return super.getPontos(); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
 
     
     

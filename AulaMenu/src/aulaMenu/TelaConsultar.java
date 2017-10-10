@@ -82,14 +82,16 @@ public class TelaConsultar extends TelaPai {
     }
 
     @Override
-    public void setPessoa(PontosGrafico pessoa) {
-        super.setPessoa(pessoa); //To change body of generated methods, choose Tools | Templates.
+    public void setPontos(PontosGrafico pontos) {
+        super.setPontos(pontos); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public PontosGrafico getPessoa() {
-        return super.getPessoa(); //To change body of generated methods, choose Tools | Templates.
+    public PontosGrafico getPontos() {
+        return super.getPontos(); //To change body of generated methods, choose Tools | Templates.
     }
+
+
 
     @Override
     public AccessibleContext getAccessibleContext() {

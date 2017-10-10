@@ -14,7 +14,7 @@ import javax.swing.JToggleButton;
  * @author m72583
  */
 public class TelaPai extends javax.swing.JPanel {
-PontosGrafico pessoa;
+PontosGrafico pontos;
     /**
      * Creates new form TelaInserir
      */
@@ -116,13 +116,15 @@ PontosGrafico pessoa;
         this.jToggleButton1 = jToggleButton1;
     }
 
-    public PontosGrafico getPessoa() {
-        return pessoa;
+    public PontosGrafico getPontos() {
+        return pontos;
     }
 
-    public void setPessoa(PontosGrafico pessoa) {
-        this.pessoa = pessoa;
+    public void setPontos(PontosGrafico pontos) {
+        this.pontos = pontos;
     }
+
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
