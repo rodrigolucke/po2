@@ -5,33 +5,27 @@
  */
 package aulaMenu;
 
+import java.awt.Point;
+
 /**
  *
  * @author m80027
  */
 public class PontosGrafico {
-    int x;
-    int y;
+    Point ponto;
 
     public PontosGrafico() {
         
     }
 
-    public int getX() {
-        return x;
+    public Point getPonto() {
+        return ponto;
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public void setPonto(Point ponto) {
+        this.ponto = ponto;
     }
 
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
 
    
     

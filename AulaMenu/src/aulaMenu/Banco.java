@@ -65,9 +65,9 @@ public class Banco {
            
             pstmt = conn.prepareStatement("INSERT INTO user VALUES(?,?)");
             
-            pstmt.setInt(1,p.getX());
+          /*  pstmt.setInt(1,p.getX());
             pstmt.setInt(2, p.getY());
-            pstmt.execute();
+            pstmt.execute();*/
             
            pstmt.close();
            conn.close();
@@ -94,10 +94,10 @@ public class Banco {
           ResultSet resultado;    
             resultado = pstmt.executeQuery();
       
-            p = new PontosGrafico();
+       /*     p = new PontosGrafico();
             p.setX(resultado.getInt(1));
             p.setY(resultado.getInt(2));
-            
+            */
            
             pstmt.close();
             conn.close();

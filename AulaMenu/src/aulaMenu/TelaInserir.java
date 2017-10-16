@@ -21,7 +21,7 @@ EventoIneserir ei;
      */
     public TelaInserir() {
         initComponents();
-        pontos = new PontosGrafico();
+        ponto = new PontosGrafico();
         this.setSize(300,300);
         this.jLabel1.setText("X:");
         this.jLabel2.setText("Y:");
@@ -85,14 +85,15 @@ EventoIneserir ei;
     }
 
     @Override
-    public void setPontos(PontosGrafico pontos) {
-        super.setPontos(pontos); //To change body of generated methods, choose Tools | Templates.
+    public void setPonto(PontosGrafico ponto) {
+        super.setPonto(ponto); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public PontosGrafico getPontos() {
-        return super.getPontos(); //To change body of generated methods, choose Tools | Templates.
+    public PontosGrafico getPonto() {
+        return super.getPonto(); //To change body of generated methods, choose Tools | Templates.
     }
+
 
     
 
@@ -131,10 +132,10 @@ EventoIneserir ei;
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jToggleButton1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                    .addComponent(jTextField2))
                 .addContainerGap(92, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -158,8 +159,8 @@ EventoIneserir ei;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    public javax.swing.JTextField jTextField1;
+    public javax.swing.JTextField jTextField2;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }

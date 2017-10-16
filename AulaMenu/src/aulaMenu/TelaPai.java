@@ -14,7 +14,7 @@ import javax.swing.JToggleButton;
  * @author m72583
  */
 public class TelaPai extends javax.swing.JPanel {
-PontosGrafico pontos;
+PontosGrafico ponto ;
     /**
      * Creates new form TelaInserir
      */
@@ -53,10 +53,10 @@ PontosGrafico pontos;
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jToggleButton1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                    .addComponent(jTextField2))
                 .addContainerGap(92, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -116,12 +116,12 @@ PontosGrafico pontos;
         this.jToggleButton1 = jToggleButton1;
     }
 
-    public PontosGrafico getPontos() {
-        return pontos;
+    public PontosGrafico getPonto() {
+        return ponto;
     }
 
-    public void setPontos(PontosGrafico pontos) {
-        this.pontos = pontos;
+    public void setPonto(PontosGrafico ponto) {
+        this.ponto = ponto;
     }
 
    

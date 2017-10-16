@@ -27,14 +27,22 @@ Banco coon = new Banco();
     public void mouseClicked(MouseEvent e) {
         System.out.println("BancodeDados.EventoIneserir.mouseClicked()");
         
-        ti.pontos.setX(Integer.parseInt(ti.getjTextField1().getText()));
-        //ti.pessoa.setIdade(Integer.parseInt(ti.getjTextField2().getText()));
+        PontosGrafico p = new PontosGrafico();
+     /*   p.setX(Integer.parseInt(ti.getjTextField1().getText()));
+        
+        PontosGrafico p2 = new PontosGrafico();
+        p2.setX(Integer.parseInt(ti.getjTextField1().getText()));*/
+        
+        
+       // ti.setPontos();
+      // ti.setPontos(pontos); Integer.parseInt(ti.getjTextField1().getText());
+        //ti.pessoa.setIdade(Integer.parseInt(ti.getjTetField2().getText()));
        // ti.pessoa.setIdade(35);
       
      //  ti.pessoa.setNome("testese");
       /* ti.pessoa.setIdade(35);*/
         
-       coon.inserir(ti.getPontos());
+     //  coon.inserir(ti.getPontos());
           
        ti.getjTextField1().setText("");
        ti.getjTextField2().setText("");

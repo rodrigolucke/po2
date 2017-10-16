@@ -32,12 +32,12 @@ Banco coon = new Banco();
       
      String nome = "testes";
        /*tc.pessoa.setIdade(35);*/
-     PontosGrafico p = new PontosGrafico();
+   /*  PontosGrafico p = new PontosGrafico();
      p =  coon.consultar(nome);
           
        tc.getjTextField1().setText(Integer.toString(p.getX()));
        tc.getjTextField2().setText(Integer.toString(p.getY()));
-      
+      */
         
     }
 

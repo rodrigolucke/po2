@@ -57,32 +57,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         tarefas.setText("Tarefas");
-        tarefas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tarefasMouseClicked(evt);
-            }
-        });
 
         inserir.setText("Inserir");
-        inserir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                inserirMouseClicked(evt);
+        inserir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inserirActionPerformed(evt);
             }
         });
         tarefas.add(inserir);
 
         excluir.setText("Excluir");
-        excluir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                excluirMouseClicked(evt);
+        excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                excluirActionPerformed(evt);
             }
         });
         tarefas.add(excluir);
 
         consultar.setText("Consultar");
-        consultar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                consultarMouseClicked(evt);
+        consultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarActionPerformed(evt);
             }
         });
         tarefas.add(consultar);
@@ -108,40 +103,40 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tarefasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tarefasMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tarefasMouseClicked
-
-    private void inserirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inserirMouseClicked
-        System.out.println("aulaMenu.TelaPrincipal.inserirMouseClicked()");
-         if(ti.isVisible())
-           ti.setVisible(false);
-         else
-          ti.setVisible(true);         
-          ti.setLocation(200, -100);
-    }//GEN-LAST:event_inserirMouseClicked
-
     private void sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sairMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_sairMouseClicked
 
-    private void excluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_excluirMouseClicked
-        if(te.isVisible())
-           te.setVisible(false);
-        else
-          te.setVisible(true);         
-          te.setLocation(200, -100);
-    }//GEN-LAST:event_excluirMouseClicked
-
-    private void consultarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultarMouseClicked
+    private void inserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inserirActionPerformed
         
-        if(tc.isVisible()){
-           tc.setVisible(false);
-        }else{
-          tc.setVisible(true);  
-        }
-          tc.setLocation(200, -100);
-    }//GEN-LAST:event_consultarMouseClicked
+        if(ti.isVisible())
+        ti.setVisible(false);  
+        else
+        ti.setVisible(true);         
+        ti.setLocation(200, -100);
+          
+        
+    }//GEN-LAST:event_inserirActionPerformed
+
+    private void excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirActionPerformed
+        if(te.isVisible())
+        te.setVisible(false);  
+        else
+        te.setVisible(true);         
+        te.setLocation(200, -100);
+         
+         
+         
+    }//GEN-LAST:event_excluirActionPerformed
+
+    private void consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarActionPerformed
+        
+        if(tc.isVisible())
+        tc.setVisible(false);  
+        else
+        tc.setVisible(true);         
+        tc.setLocation(200, -100);
+    }//GEN-LAST:event_consultarActionPerformed
 
     /**
      * @param args the command line arguments
