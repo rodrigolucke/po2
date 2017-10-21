@@ -5,17 +5,27 @@
  */
 package tecladoTracer;
 
-import com.sun.org.apache.bcel.internal.generic.CPInstruction;
 import java.awt.Component;
 import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
  * @author m78172
  */
 public class TecladoTracer extends javax.swing.JFrame {
+
     EventoTracer et;
-    JButton[] botoesTela;
+    //JButton[] botoesTela;
+    Banco b;
+    String palavra = "";
+    JButton botao;
+    static boolean botaoPressed;
+    static boolean botaoEntered;
+    static boolean botaoLeft;
+    static boolean botaoReleased;
+
     /**
      * Creates new form Teclado
      */
@@ -23,22 +33,367 @@ public class TecladoTracer extends javax.swing.JFrame {
         initComponents();
         //
         //int t =0;
-    //    for (JButton cp : this.getComponent(i)){
-    
-        for (int i=0; i < getContentPane().getComponentCount(); i++) {
-                    //varre todos os componentes
-                    Component c = getContentPane().getComponent(i);
-                    if (c instanceof JButton /*&& c.toString().substring(0, 7).equals("jButton")*/) {
-                        //apaga os valores
-                        JButton b = (JButton)c;
-                        et = new EventoTracer(this);
-                        b.addMouseListener(et);
-                        b.addMouseMotionListener(et);
-                    }
-          
-           
-         
+        //    for (JButton cp : this.getComponent(i)){
+
+        for (int i = 0; i < getContentPane().getComponentCount(); i++) {
+            //varre todos os componentes
+            Component c = getContentPane().getComponent(i);
+            
+            
+            
+            if (c instanceof JButton && !((JButton) c).getText().equals("")) {
+                 
+                //apaga os valores
+                JButton b = (JButton) c;
+                et = new EventoTracer(this);
+                b.addMouseListener(et);
+                b.addMouseMotionListener(et);
+            }
         }
+        
+       /* JButton op1 = (JButton) c;
+        JButton op2 = (JButton) c;
+        JButton op3 = (JButton) c;
+        JButton op4 = (JButton) c;*/
+        
+        
+        b = new Banco();
+    }
+
+    public EventoTracer getEt() {
+        return et;
+    }
+
+    public void setEt(EventoTracer et) {
+        this.et = et;
+    }
+
+    public Banco getB() {
+        return b;
+    }
+
+    public void setB(Banco b) {
+        this.b = b;
+    }
+
+    public String getPalavra() {
+        return palavra;
+    }
+
+    public void setPalavra(String palavra) {
+        this.palavra = palavra;
+    }
+
+    public JButton getBotao() {
+        return botao;
+    }
+
+    public void setBotao(JButton botao) {
+        this.botao = botao;
+    }
+
+    public static boolean isBotaoPressed() {
+        return botaoPressed;
+    }
+
+    public static void setBotaoPressed(boolean botaoPressed) {
+        TecladoTracer.botaoPressed = botaoPressed;
+    }
+
+    public static boolean isBotaoEntered() {
+        return botaoEntered;
+    }
+
+    public static void setBotaoEntered(boolean botaoEntered) {
+        TecladoTracer.botaoEntered = botaoEntered;
+    }
+
+    public static boolean isBotaoLeft() {
+        return botaoLeft;
+    }
+
+    public static void setBotaoLeft(boolean botaoLeft) {
+        TecladoTracer.botaoLeft = botaoLeft;
+    }
+
+    public static boolean isBotaoReleased() {
+        return botaoReleased;
+    }
+
+    public static void setBotaoReleased(boolean botaoReleased) {
+        TecladoTracer.botaoReleased = botaoReleased;
+    }
+
+    public JButton getjButton10() {
+        return jButton10;
+    }
+
+    public void setjButton10(JButton jButton10) {
+        this.jButton10 = jButton10;
+    }
+
+    public JButton getjButton11() {
+        return jButton11;
+    }
+
+    public void setjButton11(JButton jButton11) {
+        this.jButton11 = jButton11;
+    }
+
+    public JButton getjButton12() {
+        return jButton12;
+    }
+
+    public void setjButton12(JButton jButton12) {
+        this.jButton12 = jButton12;
+    }
+
+    public JButton getjButton13() {
+        return jButton13;
+    }
+
+    public void setjButton13(JButton jButton13) {
+        this.jButton13 = jButton13;
+    }
+
+    public JButton getjButton14() {
+        return jButton14;
+    }
+
+    public void setjButton14(JButton jButton14) {
+        this.jButton14 = jButton14;
+    }
+
+    public JButton getjButton15() {
+        return jButton15;
+    }
+
+    public void setjButton15(JButton jButton15) {
+        this.jButton15 = jButton15;
+    }
+
+    public JButton getjButton16() {
+        return jButton16;
+    }
+
+    public void setjButton16(JButton jButton16) {
+        this.jButton16 = jButton16;
+    }
+
+    public JButton getjButton17() {
+        return jButton17;
+    }
+
+    public void setjButton17(JButton jButton17) {
+        this.jButton17 = jButton17;
+    }
+
+    public JButton getjButton18() {
+        return jButton18;
+    }
+
+    public void setjButton18(JButton jButton18) {
+        this.jButton18 = jButton18;
+    }
+
+    public JButton getjButton19() {
+        return jButton19;
+    }
+
+    public void setjButton19(JButton jButton19) {
+        this.jButton19 = jButton19;
+    }
+
+    public JButton getjButton20() {
+        return jButton20;
+    }
+
+    public void setjButton20(JButton jButton20) {
+        this.jButton20 = jButton20;
+    }
+
+    public JButton getjButton21() {
+        return jButton21;
+    }
+
+    public void setjButton21(JButton jButton21) {
+        this.jButton21 = jButton21;
+    }
+
+    public JButton getjButton22() {
+        return jButton22;
+    }
+
+    public void setjButton22(JButton jButton22) {
+        this.jButton22 = jButton22;
+    }
+
+    public JButton getjButton23() {
+        return jButton23;
+    }
+
+    public void setjButton23(JButton jButton23) {
+        this.jButton23 = jButton23;
+    }
+
+    public JButton getjButton24() {
+        return jButton24;
+    }
+
+    public void setjButton24(JButton jButton24) {
+        this.jButton24 = jButton24;
+    }
+
+    public JButton getjButton25() {
+        return jButton25;
+    }
+
+    public void setjButton25(JButton jButton25) {
+        this.jButton25 = jButton25;
+    }
+
+    public JButton getjButton26() {
+        return jButton26;
+    }
+
+    public void setjButton26(JButton jButton26) {
+        this.jButton26 = jButton26;
+    }
+
+    public JButton getjButton27() {
+        return jButton27;
+    }
+
+    public void setjButton27(JButton jButton27) {
+        this.jButton27 = jButton27;
+    }
+
+    public JButton getjButton28() {
+        return jButton28;
+    }
+
+    public void setjButton28(JButton jButton28) {
+        this.jButton28 = jButton28;
+    }
+
+    public JButton getjButton29() {
+        return jButton29;
+    }
+
+    public void setjButton29(JButton jButton29) {
+        this.jButton29 = jButton29;
+    }
+
+    public JButton getjButton30() {
+        return jButton30;
+    }
+
+    public void setjButton30(JButton jButton30) {
+        this.jButton30 = jButton30;
+    }
+
+    public JButton getjButton31() {
+        return jButton31;
+    }
+
+    public void setjButton31(JButton jButton31) {
+        this.jButton31 = jButton31;
+    }
+
+    public JButton getjButton5() {
+        return jButton5;
+    }
+
+    public void setjButton5(JButton jButton5) {
+        this.jButton5 = jButton5;
+    }
+
+    public JButton getjButton6() {
+        return jButton6;
+    }
+
+    public void setjButton6(JButton jButton6) {
+        this.jButton6 = jButton6;
+    }
+
+    public JButton getjButton7() {
+        return jButton7;
+    }
+
+    public void setjButton7(JButton jButton7) {
+        this.jButton7 = jButton7;
+    }
+
+    public JButton getjButton8() {
+        return jButton8;
+    }
+
+    public void setjButton8(JButton jButton8) {
+        this.jButton8 = jButton8;
+    }
+
+    public JButton getjButton9() {
+        return jButton9;
+    }
+
+    public void setjButton9(JButton jButton9) {
+        this.jButton9 = jButton9;
+    }
+
+    public JButton getjOpcao() {
+        return jOpcao;
+    }
+
+    public void setjOpcao(JButton jOpcao) {
+        this.jOpcao = jOpcao;
+    }
+
+    public JButton getjOpcao1() {
+        return jOpcao1;
+    }
+
+    public void setjOpcao1(JButton jOpcao1) {
+        this.jOpcao1 = jOpcao1;
+    }
+
+    public JButton getjOpcao2() {
+        return jOpcao2;
+    }
+
+    public void setjOpcao2(JButton jOpcao2) {
+        this.jOpcao2 = jOpcao2;
+    }
+
+    public JButton getjOpcao3() {
+        return jOpcao3;
+    }
+
+    public void setjOpcao3(JButton jOpcao3) {
+        this.jOpcao3 = jOpcao3;
+    }
+
+    public JPanel getjPanel2() {
+        return jPanel2;
+    }
+
+    public void setjPanel2(JPanel jPanel2) {
+        this.jPanel2 = jPanel2;
+    }
+
+    public JTextField getjTextField1() {
+        return jTextField1;
+    }
+
+    public void setjTextField1(JTextField jTextField1) {
+        this.jTextField1 = jTextField1;
+    }
+
+    public JButton getOk() {
+        return ok;
+    }
+
+    public void setOk(JButton ok) {
+        this.ok = ok;
     }
 
     /**
@@ -50,7 +405,6 @@ public class TecladoTracer extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jOpcao = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -80,14 +434,14 @@ public class TecladoTracer extends javax.swing.JFrame {
         jButton30 = new javax.swing.JButton();
         jButton31 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jOpcao = new javax.swing.JButton();
         jOpcao1 = new javax.swing.JButton();
         jOpcao2 = new javax.swing.JButton();
         jOpcao3 = new javax.swing.JButton();
+        ok = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
-        getContentPane().add(jOpcao);
-        jOpcao.setBounds(320, 30, 70, 30);
         getContentPane().add(jTextField1);
         jTextField1.setBounds(90, 220, 300, 40);
 
@@ -198,15 +552,79 @@ public class TecladoTracer extends javax.swing.JFrame {
         jButton31.setBounds(140, 170, 170, 30);
         getContentPane().add(jPanel2);
         jPanel2.setBounds(350, 150, 10, 10);
-        getContentPane().add(jOpcao1);
-        jOpcao1.setBounds(160, 30, 70, 30);
-        getContentPane().add(jOpcao2);
-        jOpcao2.setBounds(240, 30, 70, 30);
-        getContentPane().add(jOpcao3);
-        jOpcao3.setBounds(80, 30, 70, 30);
 
-        setBounds(0, 0, 557, 326);
+        jOpcao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jOpcaoMouseClicked(evt);
+            }
+        });
+        getContentPane().add(jOpcao);
+        jOpcao.setBounds(100, 20, 70, 30);
+
+        jOpcao1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jOpcao1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jOpcao1);
+        jOpcao1.setBounds(180, 20, 70, 30);
+
+        jOpcao2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jOpcao2MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jOpcao2);
+        jOpcao2.setBounds(270, 20, 70, 30);
+
+        jOpcao3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jOpcao3MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jOpcao3);
+        jOpcao3.setBounds(360, 20, 70, 30);
+
+        ok.setText("ok");
+        ok.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                okMouseClicked(evt);
+            }
+        });
+        getContentPane().add(ok);
+        ok.setBounds(400, 230, 43, 23);
+
+        setBounds(0, 0, 569, 344);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jOpcaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jOpcaoMouseClicked
+       
+        botao = (JButton) evt.getSource();   
+        jTextField1.setText( botao.getText());
+    }//GEN-LAST:event_jOpcaoMouseClicked
+
+    private void jOpcao1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jOpcao1MouseClicked
+        botao = (JButton) evt.getSource();   
+        jTextField1.setText( botao.getText());
+    }//GEN-LAST:event_jOpcao1MouseClicked
+
+    private void jOpcao2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jOpcao2MouseClicked
+        botao = (JButton) evt.getSource();   
+        jTextField1.setText( botao.getText());
+    }//GEN-LAST:event_jOpcao2MouseClicked
+
+    private void jOpcao3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jOpcao3MouseClicked
+        botao = (JButton) evt.getSource();   
+        jTextField1.setText( botao.getText());
+    }//GEN-LAST:event_jOpcao3MouseClicked
+
+    private void okMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_okMouseClicked
+      
+            String salvar[] = new String[4];
+            salvar = this.jTextField1.getText().split(" ");
+            this.b.salvar(salvar[0]);
+        
+    }//GEN-LAST:event_okMouseClicked
 
     /**
      * @param args the command line arguments
@@ -268,15 +686,16 @@ public class TecladoTracer extends javax.swing.JFrame {
     private javax.swing.JButton jButton30;
     private javax.swing.JButton jButton31;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    public javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JButton jOpcao;
-    private javax.swing.JButton jOpcao1;
-    private javax.swing.JButton jOpcao2;
-    private javax.swing.JButton jOpcao3;
+    public javax.swing.JButton jOpcao;
+    public javax.swing.JButton jOpcao1;
+    public javax.swing.JButton jOpcao2;
+    public javax.swing.JButton jOpcao3;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
+    public javax.swing.JTextField jTextField1;
+    public javax.swing.JButton ok;
     // End of variables declaration//GEN-END:variables
 }
