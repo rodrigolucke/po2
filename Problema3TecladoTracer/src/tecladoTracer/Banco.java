@@ -86,8 +86,7 @@ public class Banco {
                 i++;
                 consulta += resultado.getString("id") + " ";
             }
-            pstmt.close();
-            conn.close();   
+           
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -109,8 +108,7 @@ public class Banco {
                 i++;
                 consulta += resultado.getString("score") + " ";
             }
-            pstmt.close();
-            conn.close();   
+         
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -147,14 +145,7 @@ public class Banco {
             // call executeUpdate to execute our sql update statement
             pstmt.executeUpdate();
            
-            
-         
-           resultado = pstmt.executeQuery();
-            int i = 0;
-            while(resultado.next() && i < 4) {
-                i++;
-                consulta += resultado.getString("palavra") + " ";
-            }
+           
             pstmt.close();
             conn.close();   
         }
