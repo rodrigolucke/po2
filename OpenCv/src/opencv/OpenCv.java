@@ -32,6 +32,8 @@ public class OpenCv {
 		try {
 			// Carregamos a imagem do disco
 			File img = chooser.getSelectedFile();
+                        
+                        
 			BufferedImage image = ImageIO.read(img);
 			// Geramos uma versão em escala de cinza
 			BufferedImage gray = toGrayscale(image);
